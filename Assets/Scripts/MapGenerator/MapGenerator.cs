@@ -11,7 +11,7 @@ public class MapGenerator : MonoBehaviour
 
 	public Noise.NormalizeMode normalizeMode;
 
-	public const int mapChunkSize = 239;
+	public const int mapChunkSize = 95;
 	[Range(0,6)]
 	public int editorPreviewLevelOfDetail;
 
@@ -26,12 +26,12 @@ public class MapGenerator : MonoBehaviour
 	public int seed;
 	public Vector2 offset;
 
-	public bool useFallOff;
-
 	public float meshHeightMultiplier;
 	public AnimationCurve meshHeightCurve;
 
-    public bool autoUpdate = true;
+	public bool useFlatShading;
+	public bool useFallOff;
+	public bool autoUpdate = true;
 
 	public TerrainType[] regions;
 
@@ -80,7 +80,7 @@ public class MapGenerator : MonoBehaviour
 				break;
 
 			case DrawMode.MESH:
-				mapDisplay.DrawMesh(MeshGenerator.GenerateTerrainMesh(mapData.heightMap, meshHeightMultiplier, meshHeightCurve, editorPreviewLevelOfDetail), TextureGenerator.TextureFromColorMap(mapData.colorMap, mapChunkSize, mapChunkSize));
+				mapDisplay.DrawMesh(MeshGenerator.GenerateTerrainMesh(mapData.heightMap, meshHeightMultiplier, meshHeightCurve, editorPreviewLevelOfDetail, useFlatShading), TextureGenerator.TextureFromColorMap(mapData.colorMap, mapChunkSize, mapChunkSize));
 				break;
 
 			case DrawMode.FALLOFF:
@@ -114,7 +114,7 @@ public class MapGenerator : MonoBehaviour
 
 	void MeshDataThread(MapData mapData, int lod, System.Action<MeshData> callBack)
 	{
-		MeshData meshData = MeshGenerator.GenerateTerrainMesh(mapData.heightMap, meshHeightMultiplier, meshHeightCurve, lod);
+		MeshData meshData = MeshGenerator.GenerateTerrainMesh(mapData.heightMap, meshHeightMultiplier, meshHeightCurve, lod, useFlatShading);
 		lock (meshDataThreadInfoQueue)
 		{
 			meshDataThreadInfoQueue.Enqueue(new MapThreadInfo<MeshData>(callBack, meshData));
