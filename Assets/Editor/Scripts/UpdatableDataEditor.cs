@@ -15,6 +15,7 @@ public class UpdatableDataEditor : Editor
 		if(CustomEditorGUI.Buttons.AddButton("Update data"))
 		{
 			data.NotifyUpdatedValues();
+			EditorUtility.SetDirty(target);
 		}
 	}
 }
