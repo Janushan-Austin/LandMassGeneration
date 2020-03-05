@@ -64,7 +64,7 @@ public static class Noise
 				{
 					maxLocalNoiseHeight = noiseHeight;
 				}
-				else if(noiseHeight < minLocalNoiseHeight)
+				if(noiseHeight < minLocalNoiseHeight)
 				{
 					minLocalNoiseHeight = noiseHeight;
 				}
@@ -84,7 +84,7 @@ public static class Noise
 				else
 				{
 					//float normalizedHeight = (noiseMap[x, y] / maxPossibleHeight * 1.5f);
-					float normalizedHeight = (noiseMap[x, y] + 1) / (maxPossibleHeight);
+					float normalizedHeight = (noiseMap[x, y] + 1) / ( 2* maxPossibleHeight / 1.5f);
 					noiseMap[x, y] = Mathf.Clamp(normalizedHeight, 0, float.MaxValue);
 				}
 			}
