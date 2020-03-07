@@ -17,8 +17,13 @@ public static class TextureGenerator
 
 	public static Texture2D TextureFromHeightMap(float[,] heightMap)
 	{
-		int width = heightMap.GetLength(0);
-		int height = heightMap.GetLength(1);
+		int width = 0;
+		int height = 0;
+		if (heightMap != null)
+		{
+			width = heightMap.GetLength(0);
+			height = heightMap.GetLength(1);
+		}
 
 		Color[] colorMap = new Color[width * height];
 

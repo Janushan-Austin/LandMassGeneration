@@ -28,11 +28,12 @@ public class TextureData : UpdatableData
 
 	public void UpdateMeshHeights(Material material, float minHeight, float maxHeight)
 	{
+		savedMaxHeight = maxHeight;
+		savedMinHeight = minHeight;
+
 		material.SetFloat("minHeight", minHeight);
 		material.SetFloat("maxHeight", maxHeight);
 
-		savedMaxHeight = maxHeight;
-		savedMinHeight = minHeight;
 	}
 
 	Texture2DArray GenerateTextureArray(Texture2D[] textures)

@@ -3,30 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class NoiseData : UpdatableData
+public class HeightMapSettings : UpdatableData
 {
-	public Noise.NormalizeMode normalizeMode;
-	public float noiseScale = 0.3f;
+	public NoiseSettings noiseSettings;
 
-	public int octaves;
-	[Range(0, 1)]
-	public float persistance;
-	public float lacunarity;
+	public bool useFallOff;
+	public float HeightMultiplier;
 
-	public int seed;
-	public Vector2 offset;
+	public AnimationCurve HeightCurve;
 
+	public float minHeight { get { return HeightMultiplier * HeightCurve.Evaluate(0); } }
+	public float maxHeight { get { return HeightMultiplier * HeightCurve.Evaluate(1); } }
+
+
+#if UNITY_EDITOR
 	protected override void OnValidate()
 	{
-		if (octaves < 1)
-		{
-			octaves = 1;
-		}
-		if (lacunarity < 1)
-		{
-			lacunarity = 1;
-		}
+		noiseSettings.ValidateValues();
 
 		base.OnValidate();
 	}
+
+#endif
 }
