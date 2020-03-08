@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(UpdatableData), true)]
+[CustomEditor(typeof(UpdatableSettings), true)]
 public class UpdatableDataEditor : Editor
 {
     public override void OnInspectorGUI()
 	{
 		base.OnInspectorGUI();
 
-		UpdatableData data = (UpdatableData)target;
+		UpdatableSettings data = (UpdatableSettings)target;
 
 		if(CustomEditorGUI.Buttons.AddButton("Update data"))
 		{

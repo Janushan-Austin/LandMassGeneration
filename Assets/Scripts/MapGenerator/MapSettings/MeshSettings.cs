@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class MeshSettings : UpdatableData
+public class MeshSettings : UpdatableSettings
 {
 	public float meshScale = 1;
 	public bool useFlatShading;
@@ -25,7 +25,7 @@ public class MeshSettings : UpdatableData
 	{
 		get
 		{
-			return supportedChunkSizes[(useFlatShading) ? flatShadedChunkSizeIndex : chunkSizeIndex] + 1;
+			return supportedChunkSizes[(useFlatShading) ? flatShadedChunkSizeIndex : chunkSizeIndex] + 5;
 		}
 	}
 
